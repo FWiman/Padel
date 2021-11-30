@@ -6,10 +6,12 @@ namespace PadelTest
 {
     public class UnitTest1
     {
+        /*
         [Fact]
         public void Test1()
         {
             //Exempel på användning:
+            
             Player player1 = new Player("Player 1");
             Player player2 = new Player("Player 2");
 
@@ -21,7 +23,7 @@ namespace PadelTest
             game.Point(player1); // Player 1 vinner Gamet
 
             var result = game.ScoreString(); // Ska vara Player 1 wins Game
-
         }
+            */
     }
 }

@@ -4,8 +4,8 @@ namespace Padel
 {
     public class Player
     {
-        public string Name { set; get; }
-        public Score Score { set; get; }
+        public string Name { get; set; }
+        public Score Score { get; set; }
         
         public Player(string name)
         {

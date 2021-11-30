@@ -6,9 +6,16 @@ namespace Padel
     {
         public int _Score;
 
-        public void Increase()
+        public void Increase()                          // Fixed so that score counts 15 and 10 up too 40 instead of 1-4.
         {
-            _Score++;
+            if (_Score < 30)
+            {
+                _Score += 15;
+            }
+            else
+            {
+                _Score += 10;
+            }
         }
 
     }
