@@ -5,11 +5,15 @@ namespace Padel
 {
     public class Set
     {
-        List<Game> _games = new List<Game>();
+        public List<Game> _games { get; } = new List<Game>();
 
         public void Point(Player player)
         {
-            _games[0].Point(player);
+            var game = new Game(player, player);
+            game.Point(player);
+            _games.Add(game);
+
         }
+
     }
 }

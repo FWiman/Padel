@@ -5,7 +5,7 @@ namespace Padel
 {
     public class Match
     {
-        List<Set> _sets;
+        public List<Set> _sets { get; } = new List<Set>();
         public Player _player1;
         public Player _player2;
         public Match(int numberOfSets, Player player1, Player player2)
@@ -14,14 +14,17 @@ namespace Padel
             for (int i = 0; i < numberOfSets; i++)
             {
                 _sets.Add(new Set());
+
             }
             _player1 = player1;
             _player2 = player2;
         }
 
-        public void Point(Player player)
+        public void Point(Player player)                    // Changed so that a point is given and "placed" in the list of set.
         {
-            _sets[0].Point(player);
+            var set = new Set();
+            set.Point(player);
+            _sets.Add(set);
         }
 
         public Score MatchScore()
