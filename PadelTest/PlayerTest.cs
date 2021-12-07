@@ -8,6 +8,9 @@ namespace PadelTest
 {
     public class PlayerTest
     {
+        /// <summary>
+        /// Kollar om player1 sparar namnet.
+        /// </summary>
         [Fact]
         public static void TestingCorrectName()
         {
@@ -16,7 +19,9 @@ namespace PadelTest
             Assert.Equal("Fredrik.W", player1.Name);
 
         }
-
+        /// <summary>
+        /// Testar om namnet är null.
+        /// </summary>
         [Fact]
         public static void TestingNullName()
         {
@@ -24,7 +29,9 @@ namespace PadelTest
 
             Assert.NotNull(player1);
         }
-
+        /// <summary>
+        /// Testar om man lämnar namnet tomt.
+        /// </summary>
         [Fact]
         public static void TestingEmptyName()
         {
@@ -32,11 +39,15 @@ namespace PadelTest
 
             Assert.NotEmpty(player1.Name);
         }
-
+        /// <summary>
+        /// Testar att addera poäng till player1 med olika indata.
+        /// </summary>
+        /// <param name="nrOfTimes"></param>
+        /// <param name="expected"></param>
         [Theory]
-        [InlineData(1, 15)]
-        [InlineData(2, 30)]
-        [InlineData(3, 40)]
+        [InlineData(1, 1)]
+        [InlineData(2, 2)]
+        [InlineData(3, 3)]
         public static void TestingAddPoint(int nrOfTimes, int expected)
         {
             var player1 = new Player("Fredrik");

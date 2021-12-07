@@ -10,8 +10,5 @@ namespace Padel
         {
             _Score++;
         }
-
-
-
     }
 }

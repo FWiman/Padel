@@ -5,52 +5,73 @@ namespace PadelTest
 {
     public class SetTest
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Fact]
-        public static void ListTest()                           // Testing to see if the list works.
+        public static void ListTest_ShouldBeOneInstanceOfList()
         {
-            var set = new Set();
-            var player1 = new Player("Fredrik");
 
-            for (int i = 0; i < 3; i++)
-            {
-                set.Point(player1);
-            }
-            Assert.Equal(3, set._games.Count);
-        }
-
-        
-        [Theory]
-        [InlineData(3, 0, 40, 0)]
-        [InlineData(0, 3, 0, 40)]
-        [InlineData(1, 2, 15, 30)]
-
-        public static void AddPointToSet(int player1Score, int player2Score, int expectedPlayer1, int expectedPlayer2)      
-        {
-                                                    // Seeing if the player who wins the game gets transfered to the list of sets.
-            int player1SetScore = 0;
-            int player2SetScore = 0;
-            var set = new Set();
             var player2 = new Player("Alexandra");
             var player1 = new Player("Fredrik");
+            var set = new Set(player1, player2);
 
-
-            for (int i = 0; i < player1Score; i++)
+            for (int i = 0; i < 5; i++)
             {
                 set.Point(player1);
-                player1SetScore = set._games[i].Score(player1)._Score;
             }
+            Assert.Single(set._games);
+        }
 
-            for (int i = 0; i < player2Score; i++)
+        [Fact]
+        public static void ListTest_ShouldBeMoreThanOneInstanceOfList()
+        {
+
+            var player2 = new Player("Alexandra");
+            var player1 = new Player("Fredrik");
+            var set = new Set(player1, player2);
+
+            for (int i = 0; i < 6; i++)
             {
-                set.Point(player2);
-                player2SetScore = set._games[i].Score(player2)._Score;
+                set.Point(player1);
             }
+            Assert.True(set._games.Count == 2);
+        }
 
-            Assert.Equal(expectedPlayer1, player1SetScore);
-            Assert.Equal(expectedPlayer2, player2SetScore);
+        [Fact]
+        public void ListTest_AllInstancesShouldContainPlayer1Score()
+        {
+            var player1 = new Player("Fredrik");
+            var player2 = new Player("Alexandra");
+            var set = new Set(player1, player2);
+            var game = new Game(player1, player2);
+
+
+            player1.Score._Score = 4;
+            set.Point(player1);
+            set.Point(player1);
+
+            Assert.Equal(set._games[0].Score(player1), player1.Score);
+            Assert.Equal(set._games[1].Score(player1), player1.Score);
 
         }
-        
+
+        [Fact]
+        public void ListTest_SecondInstanceOfListShouldContainPlayer2Score()
+        {
+            var player1 = new Player("Fredrik");
+            var player2 = new Player("Alexandra");
+            var set = new Set(player1, player2);
+            var game = new Game(player1, player2);
+
+            for (int i = 0; i < 5; i++)
+            {
+                game.Point(player2);
+            }
+            set.Point(player2);
+
+            Assert.True(set._games[1].Score(player2) == player2.Score);
+        }
+
     }
 }
